@@ -1,0 +1,295 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark mode colors (default) */
+    --background: 0 0% 3.9%;  /* #0A0A0A - Very dark */
+    --foreground: 0 0% 98%;  /* #FAFAFA */
+    --primary: 0 0% 9%;  /* #6C5DD3 */
+    --primary-foreground: 0 0% 98%;  /* #FFFFFF */
+    --secondary: 0 0% 6%;  /* #0F0F0F */
+    --secondary-foreground: 0 0% 98%;
+    --accent: 252 57% 60%;  /* #6C5DD3 */
+    --accent-foreground: 0 0% 9%;  /* #FFFFFF */
+    --accent-hover: 252 57% 66%;  /* #8677DD */
+    
+    /* Text colors */
+    --muted: 0 0% 96.1%;  /* #2A2A2A */
+    --muted-foreground: 0 0% 45.1%;  /* #A0A0A0 */
+    
+    /* Status colors */
+    --destructive: 0 84.2% 60.2%;  /* darker red */
+    --destructive-foreground: 0 0% 98%;
+    --success: 120 100% 63%;  /* #44ff44 */
+    --warning: 60 100% 63%;  /* #ffff44 */
+    
+    /* Border and input */
+    --border: 0 0% 15%;  /* #262626 - Darker border instead of light */
+    --input: 0 0% 89.8%;  /* #2A2A2A */
+    --ring: 0 0% 3.9%;  /* Same as accent */
+    --radius: 0.5rem;
+    --card: 0 0% 6%;  /* #0F0F0F - Slightly lighter than background */
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+  }
+
+  .light {
+    /* Light mode colors - Updated for better readability */
+    --background: 220 20% 97%;  /* #F5F7FA - Soft blue-gray background */
+    --foreground: 220 25% 20%;  /* #2A3341 - Softer dark blue-gray for text */
+    --primary: 252 57% 60%;  /* #6C5DD3 - Brand purple */
+    --primary-foreground: 0 0% 100%;  /* #FFFFFF */
+    --secondary: 220 20% 95%;  /* #EDF0F5 - Subtle gray for cards */
+    --secondary-foreground: 220 25% 20%;  /* #2A3341 */
+    --accent: 252 57% 60%;  /* #6C5DD3 - Brand purple */
+    --accent-foreground: 0 0% 100%;  /* #FFFFFF */
+    --accent-hover: 252 57% 66%;  /* #8677DD */
+    
+    /* Text colors */
+    --muted: 220 20% 94%;  /* #EDF0F5 */
+    --muted-foreground: 220 10% 45%;  /* #6B7280 - Softer gray for secondary text */
+    
+    /* Status colors */
+    --destructive: 0 84% 60%;  /* #ef4444 */
+    --destructive-foreground: 0 0% 100%;  /* #FFFFFF */
+    --success: 142 76% 36%;  /* #22c55e */
+    --warning: 38 92% 50%;  /* #f59e0b */
+    
+    /* Border and input */
+    --border: 220 20% 88%;  /* #DEE3EA - Subtle border color */
+    --input: 220 20% 88%;  /* #DEE3EA */
+    --ring: 252 57% 60%;  /* Same as accent */
+    --card: 220 20% 97%;  /* #F5F7FA */
+    --card-foreground: 220 25% 20%;  /* #2A3341 */
+    --popover: 220 20% 97%;  /* #F5F7FA */
+    --popover-foreground: 220 25% 20%;  /* #2A3341 */
+  }
+
+  html, body {
+    @apply min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer components {
+  .db-card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6;
+  }
+
+  .db-input {
+    @apply w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md 
+    bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+    focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none;
+  }
+
+  .db-button-primary {
+    @apply w-full px-4 py-2 bg-blue-600 text-white rounded-md
+    hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+    disabled:opacity-50 disabled:cursor-not-allowed
+    transition-colors duration-200;
+  }
+
+  .db-button-secondary {
+    @apply w-full px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-md
+    hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
+    disabled:opacity-50 disabled:cursor-not-allowed
+    transition-colors duration-200;
+  }
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Electron window styles */
+.titlebar {
+  @apply bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700;
+  -webkit-app-region: drag;
+  height: 32px;
+}
+
+.titlebar-button {
+  @apply bg-transparent border-none outline-none cursor-pointer text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors;
+  -webkit-app-region: no-drag;
+}
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: radial-gradient(circle at center, var(--primary) 0%, var(--background) 100%);
+}
+
+.auth-form {
+  background-color: var(--primary);
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.auth-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--secondary);
+  border: 1px solid var(--accent);
+  color: var(--foreground);
+}
+
+.auth-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--foreground);
+  color: var(--background);
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.auth-button:hover {
+  opacity: 0.9;
+}
+
+.floating-blur {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.floating-blur:nth-child(1) {
+  top: 20%;
+  left: 20%;
+}
+
+.floating-blur:nth-child(2) {
+  bottom: 20%;
+  right: 20%;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--secondary);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-hover);
+}
+
+/* Auth specific styles */
+.auth-input {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  border: 1px solid hsl(var(--border));
+  transition: all 0.2s ease;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: hsl(var(--accent)/0.5);
+  box-shadow: 0 0 0 2px hsl(var(--accent)/0.1);
+}
+
+.auth-button {
+  background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--accent-hover)) 100%);
+  color: hsl(var(--accent-foreground));
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, hsl(var(--accent-hover)) 0%, hsl(var(--accent)) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.auth-button::after {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -25%;
+  left: -25%;
+  background: radial-gradient(circle, hsl(var(--background)/0.2) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.auth-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 8px 30px -6px hsl(var(--accent)/0.4),
+    0 0 20px -8px hsl(var(--accent)/0.2);
+}
+
+.auth-button:hover::before,
+.auth-button:hover::after {
+  opacity: 1;
+}
+
+.auth-button:active {
+  transform: translateY(0);
+} 
